@@ -1,16 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Hello World FabricJS</title>
+    <script src="fabric.min.js"></script>
 </head>
+
 <body>
-  <canvas
-    id="myCanvas"
-    width="400"
-    height="400"
-    style="border:1px solid #000000;">
-  </canvas>
-  <script src="main.js"></script>
+    <canvas id="canvas" width="800" height="450" style="border:1px solid #000000"></canvas>
+    <script>
+        var canvas = new fabric.Canvas('canvas');
+        canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100,
+			selectable: true,
+			evented: false, }));
+		
+		canvas.add(new fabric.Line([50, 100, 200, 200], {
+			left: 170,
+			top: 150,
+			stroke: 'red',
+			selectable: true,
+			evented: false,
+		}));
+		
+        canvas.selectionColor = 'rgba(0,255,0,0.3)';
+        canvas.selectionBorderColor = 'red';
+        canvas.selectionLineWidth = 5;
+		
+		function inserisciLinea() 
+		{
+			canvas.add(new fabric.Line([0, 0, parseInt(document.getElementById("size_x").value), parseInt(document.getElementById("size_y").value)], {
+				stroke: 'red',
+				strokeWidth: 1,
+			}));
+		}
+    </script>
+	<br>
+	<label for="lblx">Dimensione x:</label>
+	<input type="text" id="size_x" name="size_x"><br><br>
+	<label for="lbly">Dimensione y:</label>
+	<input type="text" id="size_y" name="size_y"><br><br>
+	<button type="button" onclick="inserisciLinea()">Nuova linea</button>
 </body>
 </html>
